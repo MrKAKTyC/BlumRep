@@ -13,12 +13,12 @@ public class Filter {
 		this.BArray = new BitSet(SizeOfFilter);
 		this.SetSize = SizeOfFilter;
 		this.Insertion = 0;
-		this.hash = new Hasher(HashCount);
+		this.hash = new Hasher(HashCount, this.SetSize);
 	}
 
 	public String addToSet(String Value) {
 		try {
-			int posSet[] = hash.hashar(Value, this.SetSize);
+			int posSet[] = hash.hashar(Value);
 			
 			for (int i : posSet) {
 				assert (posSet[i] > SetSize);
@@ -38,7 +38,7 @@ public class Filter {
 	public String findInSet(String Value) {
 		boolean contain;
 		int i = 0;
-		int posSet[] = hash.hashar(Value, this.SetSize);
+		int posSet[] = hash.hashar(Value);
 		do {
 			contain = this.BArray.get(posSet[i]);
 			i++;
@@ -51,7 +51,7 @@ public class Filter {
 	
 	public String removeFromSet(String Value){
 		try{
-			int posSet[] = hash.hashar(Value, this.SetSize);
+			int posSet[] = hash.hashar(Value);
 			
 			for (int i : posSet) {
 				assert (posSet[i] > SetSize);

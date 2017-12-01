@@ -12,7 +12,7 @@ import util.ActionTypes;
 
 public class ShowPanel extends JScrollPane {
 	private static final long serialVersionUID = 1L;
-	private Hasher hash = new Hasher(3);
+	private Hasher hash;
 	private JLabel[][] labels;
 	private int cols;
 	private int rows;
@@ -20,6 +20,7 @@ public class ShowPanel extends JScrollPane {
 
 	public ShowPanel(int Size) {
 		this.Size = Size;
+		this.hash = new Hasher(3,Size);
 		this.cols = 10;
 		JPanel GridPanel = new JPanel();
 		this.rows = (Size % cols == 0 ? Size / cols : Size / cols + 1);
@@ -40,7 +41,7 @@ public class ShowPanel extends JScrollPane {
 
 	public void changeState(String Value, ActionTypes actionType) {
 
-		int[] coordinates = hash.hashar(Value, Size);
+		int[] coordinates = hash.hashar(Value);
 		switch (actionType) {
 		case ADD:
 			for (int i = 0; i < coordinates.length; i++) {
