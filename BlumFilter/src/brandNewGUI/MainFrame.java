@@ -2,6 +2,7 @@ package brandNewGUI;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import blumPackage.Filter;
 import util.ActionTypes;
@@ -19,14 +20,15 @@ public class MainFrame extends JFrame {
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 		filtr = new Filter(Size, HashCount); // ALARM REWORK!!!
 		this.main_p = new MainPanel(this);
-		this.show_p = new ShowPanel(filtr.getSetSize());
+		this.show_p = new ShowPanel(filtr.getSetSize(),filtr.getHasher());
 		this.history_p = new HistoryPanel(this);
 		this.add(main_p);
 		this.add(show_p);
 		this.add(history_p);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.pack();
+		this.setSize(650, 300);
+		this.setResizable(false);
 	}
 
 	public Filter getFiltr() {

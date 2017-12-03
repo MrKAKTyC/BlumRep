@@ -1,5 +1,6 @@
 package brandNewGUI;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,10 +26,11 @@ public class InitFrame extends JFrame implements ActionListener {
 		JPanel init = new JPanel();
 		this.add(init);
 
-		init.setLayout(new BoxLayout(init, BoxLayout.Y_AXIS));
+		GridLayout BL = new GridLayout(3, 2, 5, 5);
+		init.setLayout(BL);
 		labels.add(new JLabel("Розмір фільтру"));
 		labels.get(0).setHorizontalAlignment(JLabel.CENTER);
-		labels.add(new JLabel("Кількість хеш функцій"));
+		labels.add(new JLabel("Кількість хеш функцій(від 1 до 11)"));
 		labels.get(1).setHorizontalAlignment(JLabel.CENTER);
 		labels.add(new JLabel(""));
 		labels.get(2).setHorizontalAlignment(JLabel.CENTER);
@@ -40,7 +42,7 @@ public class InitFrame extends JFrame implements ActionListener {
 		Hash_Count_Field = new JTextField();
 		init.add(Hash_Count_Field);
 		init.add(labels.get(2));
-		Start_Button = new JButton("Start");
+		Start_Button = new JButton("Почати");
 
 		Start_Button.addActionListener(this);
 		init.add(Start_Button);
@@ -55,7 +57,11 @@ public class InitFrame extends JFrame implements ActionListener {
 			int Size = Integer.parseInt(Filter_Size_Field.getText());
 			int Hash_c = Integer.parseInt(Hash_Count_Field.getText());
 			if (Size - Hash_c < 0) {
-				JOptionPane.showMessageDialog(null, "Фільтр менший кількості хеш функцій", "Помилка",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Фільтр менший кількості хеш функцій", "Помилка",
+						JOptionPane.ERROR_MESSAGE);
+			} else if (Hash_c > 11) {
+				JOptionPane.showMessageDialog(null, "Обрано недоступну кількість хеш-функцій", "Помилка",
+						JOptionPane.ERROR_MESSAGE);
 			} else {
 				this.dispose();
 				new MainFrame(Size, Hash_c);

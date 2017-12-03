@@ -1,6 +1,9 @@
 package brandNewGUI;
 
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -29,40 +32,46 @@ public class MainPanel extends JPanel implements ActionListener {
 	public MainPanel(final MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setAlignmentY(TOP_ALIGNMENT);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new GridLayout(4, 1, 10, 10));
+		this.setAlignmentX(Component.LEFT_ALIGNMENT);
 		String_for_Work = new JTextField();
 		String_for_Work.setMaximumSize(new Dimension(1000, 20));
 		String_for_Work.addKeyListener(new KeyAdapter() {
-			@Override public void keyTyped(KeyEvent e) {Status_Label.setText("");	}});
+			@Override
+			public void keyTyped(KeyEvent e) {
+				Status_Label.setText("");
+			}
+		});
 		this.add(String_for_Work);
-			Chance_Label = new JLabel("Шанс похибки 0%");
-			Chance_Label.setHorizontalAlignment(JLabel.CENTER);
-		this.add(Chance_Label); // Add
-			Add_B = new JButton("Додати до фільтра");
-			Add_B.addActionListener(this);
-		this.add(Add_B);
-			Chek_B = new JButton("Перевірити на наявність"); // Check
-			Chek_B.addActionListener(this);
-		this.add(Chek_B);
-			Remove_From_Filt = new JButton("Видалити з фільтра"); // Remove
-			Remove_From_Filt.addActionListener(this);
-		this.add(Remove_From_Filt);
-			Re_Init_B = new JButton("Новий фільтр");
-			Re_Init_B.addActionListener(this);
-		this.add(Re_Init_B);
-			Status_Label = new JLabel("");
-			Status_Label.setHorizontalAlignment(JLabel.CENTER);
+		Chance_Label = new JLabel("Шанс похибки 0%");
+//		Chance_Label.setAlignmentX(JLabel.CENTER);
+		this.add(Chance_Label); // Add		
+		this.add(buttonPanel);
+		Add_B = new JButton("Додати до фільтра");
+		Add_B.addActionListener(this);
+		buttonPanel.add(Add_B);
+		Chek_B = new JButton("Перевірити на наявність"); // Check
+		Chek_B.addActionListener(this);
+		buttonPanel.add(Chek_B);
+		Remove_From_Filt = new JButton("Видалити з фільтра"); // Remove
+		Remove_From_Filt.addActionListener(this);
+		buttonPanel.add(Remove_From_Filt);
+		Re_Init_B = new JButton("Новий фільтр");
+		Re_Init_B.addActionListener(this);
+		buttonPanel.add(Re_Init_B);
+		Status_Label = new JLabel("");
+//		Status_Label.setHorizontalAlignment(JLabel.CENTER);
 		this.add(Status_Label);
-
+		this.setMaximumSize(new Dimension(250, 300));
 	}
 
 	public void setString_for_Work(String string_for_Work) {
 		String_for_Work.setText(string_for_Work);
 	}
 
-	
 	// Actions Perfomed
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (Add_B.equals(e.getSource())) {

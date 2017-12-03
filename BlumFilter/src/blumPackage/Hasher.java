@@ -24,33 +24,8 @@ public class Hasher {
 	public int[] hashar(String Value) {
 		int j = hashFuncCount;
 		RSHash(Value, j);
-		// for (int i = 0; i < posInSet.length; i++) {
-		// j++;
-		// // posInSet[i] = ((FirstHash(Value, i, SizeOfSet))% SizeOfSet+
-		// // SizeOfSet) % SizeOfSet;
-		// // ((FirstHash(Value, i, SizeOfSet) * j * SecondHash(Value, i,
-		// // SizeOfSet)) % SizeOfSet
-		// // + SizeOfSet) % SizeOfSet;
-		// // System.out.printf("%d * %d * %d = ", FirstHash(Value, i,
-		// // SizeOfSet), j, SecondHash(Value, i, SizeOfSet));
-		// // System.out.println(posInSet[i]);
-		// }
-		// // System.out.println();
 		return this.posInSet;
 	}
-
-	// private int FirstHash(String Value, int Iteration, int SizeOfSet) {
-	// return ((int) (((Value).hashCode() * 37 * (Iteration + 17)) %
-	// SizeOfSet));
-	// }
-	//
-	// private int SecondHash(String Value, int Iteration, int SizeOfSet) {
-	// int hash = 0;
-	// for (int i = 0; i <= SizeOfSet; i++) {
-	// hash = (31 * hash) + Value.hashCode();
-	// }
-	// return hash;
-	// }
 
 	public void RSHash(String str, int Num) {
 		final int num = 0;
@@ -105,7 +80,6 @@ public class Hasher {
 		posInSet[num] = ((int) hash % SizeOfSet + SizeOfSet) % SizeOfSet;
 		ELFHash(str, Num++);
 	}
-
 	public void ELFHash(String str, int Num) {
 		final int num = 3;
 		if (num == Num) {
@@ -209,7 +183,7 @@ public class Hasher {
 			hash *= fnv_prime;
 			hash ^= str.charAt(i);
 		}
-		posInSet[num] = ((int) hash % SizeOfSet + SizeOfSet) % SizeOfSet;
+		posInSet[0] = ((int) hash % SizeOfSet + SizeOfSet) % SizeOfSet;
 		APHash(str, Num++);
 	}
 

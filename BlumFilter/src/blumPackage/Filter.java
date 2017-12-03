@@ -78,5 +78,7 @@ public class Filter {
 	public int getSetSize(){
 		return this.SetSize;
 	}
-
+	public Hasher getHasher(){
+		return this.hash;
+	}
 }
